@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "Protos/wrappers.proto";
+
+option csharp_namespace = "GrpcTestWebApi.Service";
+
+package ExchangeRates;
+
+service ExchangeRates {
+	rpc GetRates (RequestInfo) returns (ResponseInfo);
+}
+
+message RequestInfo {
+	string query = 1;
+}
+
+message ExchangeRate {
+	google.protobuf.StringValue code = 1;
+	google.protobuf.StringValue title = 2;
+	google.protobuf.Int32Value count = 3;
+	google.protobuf.DoubleValue rate = 4;
+}
+
+message ResponseInfo {
+	repeated ExchangeRate Rates = 1;
+}
